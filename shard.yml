@@ -1,0 +1,30 @@
+name: bank-account
+version: 0.1.0
+
+authors:
+  - Thanasis Papapostolou (Oblivious) <me262thanos@gmail.com>
+
+description: |
+  #(EDIT HERE)
+
+crystal: 1.0.0
+
+#dependencies:
+  #(ADD DEPENDS)
+    #(ADD SUB DEPENDS)
+
+#development_dependencies:
+  #(ADD PRIVATE DEPENDS)
+    #(ADD PRIVATE SUB DEPENDS)
+
+#libraries:
+  #(ADD LIBS)
+
+executables:
+  - bank-account
+
+targets:
+  shards:
+    main: src/bank-account.cr
+
+license: GPLv3
