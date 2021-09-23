@@ -1,2 +1,2 @@
-require "spec"
-require "../src/bank-account"
+require "spec";
+require "../src/bank-account/**";
