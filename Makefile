@@ -1,34 +1,25 @@
-INPUT = .cr
+NAME = bank-account
+INPUT = $(NAME).cr
+OUTPUT = bank
 
-all:
-	crystal src/$(INPUT)
+all: build
 
-build:
-	shards build
+remake_export:
+	$(RM) -r export
+	mkdir export
+
+build: remake_export
+	crystal build --release src/$(INPUT) -o export/$(OUTPUT)
 
 run:
-	./bin/shards
+	crystal run src/$(INPUT)
+
+test:
+	crystal spec ./spec/$(NAME).spec.cr
 
 document:
 	$(RM) -r ./docs
 	crystal docs src/*.cr
 
 clean:
-	$(RM) -r ./bin
-INPUT = bank-account.cr
-
-all:
-	crystal src/$(INPUT)
-
-build:
-	shards build
-
-run:
-	./bin/shards
-
-document:
-	$(RM) -r ./docs
-	crystal docs src/*.cr
-
-clean:
-	$(RM) -r ./bin
+	$(RM) -r ./export
