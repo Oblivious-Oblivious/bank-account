@@ -1,6 +1,6 @@
 # bank-account
 
-TODO: Write a description here
+Mock app for showcasing the Boundary-Interactor-Entiry-Viewmodel architecture.
 
 ## Installation
 
