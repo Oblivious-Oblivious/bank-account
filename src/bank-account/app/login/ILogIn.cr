@@ -3,5 +3,5 @@ abstract class ILogin
         pin : Integer,
         password : String,
         biometric : BiometricData
-    ) : Session;
+    ) : LoginModel;
 end

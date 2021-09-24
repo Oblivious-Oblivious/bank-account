@@ -3,5 +3,5 @@ abstract class ISend
         recipient_hash : BankHashID,
         transfer_amount : Integer,
         fee_amount : Integer
-    ) : TransactionID;
+    ) : Sendable;
 end

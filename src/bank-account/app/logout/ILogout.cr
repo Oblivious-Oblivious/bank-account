@@ -1,3 +1,3 @@
 abstract class ILogout
-    abstract def logout;
+    abstract def logout : LogoutModel;
 end
