@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Log In</title>
+</head>
+<body>
+    <div class="container">
+        <div class="name">Log In</div>
+
+        <div class="data">
+            <i>Data:</i>
+            <ul>
+                <li>&lt;User-PIN&gt;</li>
+                <li>&lt;User-biometric-data&gt;</li>
+                <li>&lt;User-password&gt;</li>
+            </ul>
+        </div>
+
+        <div class="primary-course">
+            <i>Primary Course:</i>
+            <ol>
+                <li>User issues "Log In" command with above data.</li>
+                <li>System validates all PIN and password and sends biometric data to analyzer.</li>
+                <li>System creates a limited session with duration of 10 minutes.</li>
+                <li>System refreshes the session when "Send", "Deposit" or "Withdraw" execute.</li>
+            </ol>
+        </div>
+
+        <div class="exception-course">
+            <i>Validation Error (2)</i>
+            <ol>
+                <li>System delivers error message to user.</li>
+            </ol>
+
+            <i>Session Error (3)</i>
+            <ol>
+                <li>System asks for user to authenticate again using biometric information.</li>
+                <li>System terminates the session on failure to authenticate.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

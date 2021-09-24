@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Withdraw Use Case</title>
+</head>
+<body>
+    <div class="container">
+        <div class="name">Withdraw</div>
+
+        <div class="data">
+            <i>Data:</i>
+            <ul>
+                <li>&lt;Withdraw-amount&gt;</li>
+            </ul>
+        </div>
+
+        <div class="primary-course">
+            <i>Primary Course:</i>
+            <ol>
+                <li>User issues the "Widthdraw" command with above data.</li>
+                <li>System validates the amount to be withdrawn.</li>
+                <li>System provides equivalent cash and a transaction-id.</li>
+            </ol>
+        </div>
+
+        <div class="exception-course">
+            <i>Validation Error (2)</i>
+            <ol>
+                <li>System informs user that the amount he wishes to withdraw exceeds the total amount.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

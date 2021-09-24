@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Send Use Case</title>
+</head>
+<body>
+    <div class="container">
+        <div class="name">Send</div>
+
+        <div class="data">
+            <i>Data:</i>
+            <ul>
+                <li>&lt;Recipient-hash-id&gt;</li>
+                <li>&lt;Transfer-amount&gt;</li>
+                <li>&lt;Fee-amount&gt;</li>
+            </ul>
+        </div>
+
+        <div class="primary-course">
+            <i>Primary Course:</i>
+            <ol>
+                <li>User issues the "Send" command with above data.</li>
+                <li>System validates all data.</li>
+                <li>System calculates the transaction priority according to the fee provided.</li>
+                <li>System notifies the receiver and performs "Deposit" on his account.</li>
+                <li>System performs "Withdraw" and provides a transaction-id to the sender.</li>
+            </ol>
+        </div>
+
+        <div class="exception-course">
+            <i>Hash ID Error (2)</i>
+            <ol>
+                <li>The system identifies a non existent hash and repeats "Send".</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

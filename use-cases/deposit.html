@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Deposit Use Case</title>
+</head>
+<body>
+    <div class="container">
+        <div class="name">Deposit</div>
+
+        <div class="data">
+            <i>Data:</i>
+            <ul>
+                <li>&lt;Cash-amount&gt;</li>
+            </ul>
+        </div>
+
+        <div class="primary-course">
+            <i>Primary Course:</i>
+            <ol>
+                <li>User issues "Deposit Amount" command with above data.</li>
+                <li>System validates that cash amount is an acceptable value.</li>
+                <li>System adds amount to the users account and determines transaction-id.</li>
+                <li>System delivers transaction-id to user.</li>
+            </ol>
+        </div>
+
+        <div class="exception-course">
+            <i>Large Amount Error (2)</i>
+            <ol>
+                <li>System requests that a big enough amount shall be deposited in-person.</li>
+                <li>System terminates command.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
