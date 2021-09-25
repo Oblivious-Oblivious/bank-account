@@ -18,6 +18,6 @@ class Transaction
         @sender = sender;
         @receiver = receiver;
         @tid = hash("#{sender} to #{receiver}");
-        @date = DateModel.new.get_curr_date;
+        @date = DateModel.new;
     end
 end
