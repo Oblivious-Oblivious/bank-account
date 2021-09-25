@@ -38,7 +38,4 @@ describe Transaction do
 
         expect(t.date < newer_date).to eq true;
     end
-
-    # TODO Test TID on hashing date as well
-    # Time.at(628232400) #=> 1989-11-28 00:00:00 -0500
 end
