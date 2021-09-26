@@ -6,4 +6,8 @@ class AccountData
     def initialize
         @transaction_information = Array.new;
     end
+
+    def to_s
+        "Hash ID: #{hash_id}\nTotal Amount: $#{total_amount}\nNo. Transactions: #{transaction_information.size}";
+    end
 end
