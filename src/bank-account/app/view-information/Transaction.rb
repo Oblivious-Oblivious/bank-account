@@ -18,6 +18,6 @@ class Transaction
         @sender = sender;
         @receiver = receiver;
         @tid = hash("#{sender} to #{receiver}");
-        @date = DateModel.new;
+        @date = Time.new;
     end
 end

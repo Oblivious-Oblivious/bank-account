@@ -34,7 +34,7 @@ describe Transaction do
     it "makes sure that the date recorded is the latest possible" do
         t = _create_transaction("bank", "oblivious");
         sleep(0.001); # Simulate a delay
-        newer_date = DateModel.new;
+        newer_date = Time.new;
 
         expect(t.date < newer_date).to eq true;
     end
