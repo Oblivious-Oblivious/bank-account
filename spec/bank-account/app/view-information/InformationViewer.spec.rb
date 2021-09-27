@@ -1,14 +1,14 @@
-describe ViewInformation do
+describe InformationViewer do
     it "responds to #view_account_data" do
-        expect(ViewInformation.new).to respond_to :view_account_data;
+        expect(InformationViewer.new).to respond_to :view_account_data;
     end
 
     it "returns an AccountData object when `view_account_data` is called" do
-        expect(ViewInformation.new.view_account_data).to be_an_instance_of AccountData;
+        expect(InformationViewer.new.view_account_data).to be_an_instance_of AccountData;
     end
 
     it "returns a visual representation of AccountData" do
-        vi = ViewInformation.new;
+        vi = InformationViewer.new;
         mock_data = AccountData.new;
         mock_data.hash_id = BankHashID.new(username: "oblivious");
         mock_data.total_amount = 42;
