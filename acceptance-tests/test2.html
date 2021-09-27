@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Test 2</title>
+</head>
+<body>
+    <div class="container">
+        <div class="name">Test 2</div>
+
+        <div class="data">
+            <i>Data:</i>
+            <ul>
+                <li>&lt;Alice-id&gt;</li>
+                <li>&lt;Deposit-amount&gt;</li>
+                <li>&lt;Send-ammount&gt;</li>
+            </ul>
+        </div>
+
+        <div class="primary-course">
+            <i>Primary Course:</i>
+            <ol>
+                <li>User (Bob) deposits "Deposit-amount" of cash into his bank account.</li>
+                <li>User views information about his account.</li>
+                <li>User sends "Send-ammount" to "Alice-id"</li>
+                <li>Alice receives "Send-ammount" to her account.</li>
+                <li>Alice and Bob receive a transaction_id.</li>
+                <li>Bobs balance is now the difference between "Deposit-amount" and "Send-ammount".</li>
+                <li>Alices balance is increased by "Send-ammount".</li>
+            </ol>
+        </div>
+
+        <div class="result">
+            <i>Expected Result:</i>
+            <ol>
+                <li>Bobs balance is $42.</li>
+                <li>Bob receives information {hash_id, $42, 1}.</li>
+                <li>Bob sends $30 to Alice.</li>
+                <li>Alice receives $30 from Bob.</li>
+                <li>Alice and Bob initiate the same Transaction object.</li>
+                <li>Bobs balance is decreased by $30 and is now $12.</li>
+                <li>Alices balance is increased by $30.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --text-color: rgb(18, 18, 18);
+        --body-bg-color: rgb(237, 237, 237);
+        --border-color: rgba(18, 18, 18, 0.5);
+        --shadow-color: rgba(24, 24, 24, 0.25);
+        --indigo: rgba(76, 0, 130);
+        --green: rgba(34, 139, 34);
+        --tangerine: rgb(220, 67, 20);
+    }
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: rgb(237, 237, 237);
+        --body-bg-color: rgb(18, 18, 18);
+        --border-color: rgba(237, 237, 237, 0.8);
+        --shadow-color: rgba(127, 127, 127, 0.25);
+        --indigo: rgb(110, 17, 177);
+        --green: rgba(34, 139, 34);
+        --tangerine: rgb(220, 67, 20);
+    }
+}
+
+html, body {
+    height: 100%;
+    font-family: Raleway, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--text-color);
+    background-color: var(--body-bg-color);
+    text-align: left;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.container {
+    padding: 2rem;
+    background: var(--body-bg-color);
+    box-shadow: 5px 5px 15px var(--shadow-color);
+    border-radius: 10px;
+}
+
+.name {
+    margin-bottom: 2rem;
+    font-size: 4rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 100;
+}
+
+.data i, .primary-course i, .result i {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.data i {
+    color: var(--indigo);
+}
+
+.primary-course i {
+    color: var(--green);
+}
+
+.result i {
+    color: var(--tangerine);
+}

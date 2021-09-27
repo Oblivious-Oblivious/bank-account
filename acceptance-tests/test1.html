@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Test 1</title>
+</head>
+<body>
+    <div class="container">
+        <div class="name">Test 1</div>
+
+        <div class="data">
+            <i>Data:</i>
+            <ul>
+                <li>&lt;Cash-amount&gt;</li>
+                <li>&lt;Withdraw-amount&gt;</li>
+            </ul>
+        </div>
+
+        <div class="primary-course">
+            <i>Primary Course:</i>
+            <ol>
+                <li>User performs "Deposit" with Cash-ammount.</li>
+                <li>User performs "View Information".</li>
+                <li>User performs "Widthdraw" with Withdraw-amount.</li>
+                <li>User performs "View Information".</li>
+            </ol>
+        </div>
+
+        <div class="result">
+            <i>Expected Result:</i>
+            <ol>
+                <li>User has $42 dollars.</li>
+                <li>User views {hash_id, $42, 1}.</li>
+                <li>User has $12 dollars.</li>
+                <li>User views {hash_id, $12, 2}.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
