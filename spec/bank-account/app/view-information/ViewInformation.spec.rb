@@ -1,6 +1,6 @@
 describe ViewInformation do
-    it "implements the main interface method without errors" do
-        ViewInformation.new.view_account_data;
+    it "responds to #view_account_data" do
+        expect(ViewInformation.new).to respond_to :view_account_data;
     end
 
     it "returns an AccountData object when `view_account_data` is called" do
