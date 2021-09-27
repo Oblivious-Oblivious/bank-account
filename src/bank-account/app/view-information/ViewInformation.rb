@@ -1,4 +1,4 @@
-class ViewInformation
+class ViewInformation < IViewInformation
     attr_accessor :account_data;
 
     def initialize
