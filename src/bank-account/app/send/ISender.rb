@@ -1,3 +1,3 @@
 class ISend
-    def send_amount(recipient_hash:, transfer_amount:) = raise(self);
+    def send(amount_of:, from_hash:, to_hash:) = raise(self);
 end

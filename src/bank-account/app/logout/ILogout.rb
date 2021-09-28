@@ -1,3 +1,3 @@
 class ILogout
-    def logout() = raise(self);
+    def logout(user:) = raise(self);
 end

@@ -1,3 +1,3 @@
 class IWithdraw
-    def withdraw_amount(amount:) = raise(self);
+    def withdraw(amount_of:, from_user:) = raise(self);
 end

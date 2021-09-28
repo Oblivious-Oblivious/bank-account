@@ -1,3 +1,3 @@
 class IDepositor
-    def deposit_amount(cash_amount:) = raise(self);
+    def deposit(amount_of:, to_user:) = raise(self);
 end
