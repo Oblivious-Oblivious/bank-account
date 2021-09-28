@@ -1,3 +1,3 @@
 class ILogin
-    def login(pin:, password:, biometric:) = raise(self);
+    def login(username:, pin:, password:) = raise(self);
 end
