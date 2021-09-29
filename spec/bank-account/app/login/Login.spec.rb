@@ -7,7 +7,7 @@ describe Login do
         l = Login.new;
         response = l.login(
             username: "oblivious",
-            pin: 1234,
+            pin: "1234",
             password: "pass123"
         );
 
