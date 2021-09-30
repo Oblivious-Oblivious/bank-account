@@ -4,7 +4,7 @@ class UserSaver
     DB_PATH = "src/bank-account/database/_users.db";
 
     private def user_exists_in_db(users, user)
-        return false if !users["users"];
+        return false if (!users["users"] || users["users"].size == 0);
         users["users"][user.username];
     end
 
