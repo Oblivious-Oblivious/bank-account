@@ -27,6 +27,14 @@ class UserSaver
         file.close;
     end
 
+    def initialize
+        if !File.exist?(DB_PATH)
+            File.open(DB_PATH, "w") do |f|
+                f.puts "users: {}";
+            end
+        end
+    end
+
     def load_stored_users
         YAML::load(File.read(DB_PATH));
     end

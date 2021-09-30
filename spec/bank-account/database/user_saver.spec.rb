@@ -1,8 +1,5 @@
 def _reset_files(path)
     File.delete(path) if File.exist?(path);
-    File.open(path, "w") do |f|
-        f.puts "users: {}";
-    end
 end
 
 DB_PATH = "src/bank-account/database/_users.db";
