@@ -3,10 +3,6 @@ require "yaml";
 class UserSaver
     DB_PATH = "src/bank-account/database/_users.db";
 
-    private def load_stored_users
-        YAML::load(File.read(DB_PATH));
-    end
-
     private def user_exists_in_db(users, user)
         return false if !users["users"];
         users["users"][user.username];
@@ -29,6 +25,10 @@ class UserSaver
         file = File.new(DB_PATH, "w");
         file.puts data;
         file.close;
+    end
+
+    def load_stored_users
+        YAML::load(File.read(DB_PATH));
     end
 
     def new_user(user, pin = "0000", password = "0000")
