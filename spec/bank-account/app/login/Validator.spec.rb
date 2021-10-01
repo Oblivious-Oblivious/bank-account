@@ -4,4 +4,6 @@ describe LoginValidator do
 
         expect(response).to eq true;
     end
+
+    # TODO Implement validator
 end
