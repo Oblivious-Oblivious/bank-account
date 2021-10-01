@@ -13,4 +13,7 @@ describe Login do
 
         expect(response).to eq [:ok, "Log In"];
     end
+
+    # TODO
+    #it "returns an [:validation_error, \"Log In\"] on invalid credentials";
 end
