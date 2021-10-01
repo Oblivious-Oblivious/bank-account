@@ -19,9 +19,10 @@ describe Depositor do
         oblivious = User.new("oblivious");
         
         dep = Depositor.new;
-        dep.deposit(amount_of: 42, to_user: oblivious);
+        response = dep.deposit(amount_of: 42, to_user: oblivious);
 
         expect(d.load_all_users["users"]["oblivious"].balance).to eq(54);
+        expect(response).to eq [:ok, "Deposit"];
     end
 
     it "deposits an invalid amount of $10000 to a new user" do
@@ -29,8 +30,9 @@ describe Depositor do
         oblivious = User.new("oblivious");
         
         dep = Depositor.new;
-        dep.deposit(amount_of: 10_000, to_user: oblivious);
+        response = dep.deposit(amount_of: 10_000, to_user: oblivious);
 
         expect(d.load_all_users["users"]["oblivious"].balance).to eq(12);
+        expect(response).to eq [:large_amount_error, "Deposit"];
     end
 end
