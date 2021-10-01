@@ -29,6 +29,10 @@ class UserSaverGateway
         });
     end
 
+    def load(user)
+        load_all_users["users"][user.username];
+    end
+
     def reset_database
         load_all_users["users"].each do |user_object|
             db.delete_user(user_object[1].user);

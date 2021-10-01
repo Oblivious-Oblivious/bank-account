@@ -58,4 +58,17 @@ describe UserSaverGateway do
         expect(updated_user.pin).to eq "4242";
         expect(updated_user.password).to eq "random42";
     end
+
+    it "loads the information of a specific user" do
+        d = UserSaverGateway.new;
+        oblivious = User.new("oblivious");
+
+        d.store(oblivious, "1234", "pass123");
+        d.store(User.new("another"), "0000", "0000");
+
+        expect(d.load(oblivious).user).to eq User.new("oblivious");
+        expect(d.load(oblivious).balance).to eq 0;
+        expect(d.load(oblivious).pin).to eq "1234";
+        expect(d.load(oblivious).password).to eq "pass123";
+    end
 end
