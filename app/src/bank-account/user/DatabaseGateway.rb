@@ -1,3 +1,5 @@
+require "./database/src/user_saver";
+
 # TODO Try detatching, DB connects everything too much.
 class DatabaseGateway
     private attr_reader :db;
