@@ -1,6 +1,6 @@
 class DuplicationValidator
     def self.validate(username)
-        # TODO DuplicationValidator
-        true;
+        d = DatabaseGateway.new;
+        d.load(User.new(username)).nil?;
     end
 end

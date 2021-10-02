@@ -7,9 +7,11 @@ class Register < IRegister
 
     def register(username:, pin:, password:)
         if validator.validate(username)
+            d = DatabaseGateway.new;
+            d.store(User.new(username), pin, password);
             [:ok, "Register"];
         else
-            [:validation_error, "Register"];
+            [:duplication_error, "Register"];
         end
     end
 end
