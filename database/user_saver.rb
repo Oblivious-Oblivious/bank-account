@@ -1,11 +1,11 @@
 require "yaml";
 
 class UserSaver
-    DB_PATH = "src/bank-account/database/_users.db";
+    DB_PATH = "database/_users.db";
 
     private def user_exists_in_db(users, user)
         return false if (!users["users"] || users["users"].size == 0);
-        users["users"][user.username];
+        users["users"][user];
     end
 
     private def user_does_not_exist_in_db(users, user)
@@ -15,9 +15,9 @@ class UserSaver
     private def update_users(users, user, pin, password)
         udesc = UserDescriptor.new(user, 0, pin, password);
         if !users["users"]
-            users["users"] = {user.username => udesc};
+            users["users"] = {user => udesc};
         else
-            users["users"][user.username] = udesc;
+            users["users"][user] = udesc;
         end
     end
 
@@ -51,7 +51,7 @@ class UserSaver
         users = load_stored_users();
         return if user_does_not_exist_in_db(users, user);
 
-        user_to_update = users["users"][user.username];
+        user_to_update = users["users"][user];
         user_to_update.pin = user_data["pin"];
         user_to_update.password = user_data["password"];
 
@@ -62,7 +62,7 @@ class UserSaver
         users = load_stored_users();
         return if user_does_not_exist_in_db(users, user);
 
-        users["users"][user.username].balance += amount;
+        users["users"][user].balance += amount;
 
         write_to_db(users.to_yaml);
     end
@@ -72,11 +72,11 @@ class UserSaver
         return if user_does_not_exist_in_db(users, user);
 
         # TODO Refactor validation
-        curr_balance = users["users"][user.username].balance;
+        curr_balance = users["users"][user].balance;
         if curr_balance - amount < 0
             return;
         else
-            users["users"][user.username].balance -= amount;
+            users["users"][user].balance -= amount;
         end
 
         write_to_db(users.to_yaml);
@@ -86,7 +86,7 @@ class UserSaver
         users = load_stored_users();
         return if user_does_not_exist_in_db(users, user);
 
-        users["users"].delete(user.username);
+        users["users"].delete(user);
 
         write_to_db(users.to_yaml);
     end
