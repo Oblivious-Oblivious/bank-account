@@ -2,17 +2,13 @@
 
 Mock app for showcasing the Boundary-Interactor-Entiry-Viewmodel architecture.
 
-## Installation
+TODO Complete documentation
 
-TODO: Write installation instructions here
+## Installation
 
 ## Usage
 
-TODO: Write usage instructions here
-
 ## Development
-
-TODO: Write development instructions here
 
 ## Contributing
 
