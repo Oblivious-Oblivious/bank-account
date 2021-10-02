@@ -14,7 +14,7 @@ class UserSaver
     end
 
     private def update_users(users, user, pin, password)
-        udesc = UserDescriptor.new(user, 0, pin, password);
+        udesc = UserDescriptor.new(user, pin, password);
         if !users["users"]
             users["users"] = {user => udesc};
         else

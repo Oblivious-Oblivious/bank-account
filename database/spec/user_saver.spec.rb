@@ -26,7 +26,7 @@ describe UserSaver do
 
             users = YAML::load(File.read(DB_PATH));
 
-            udesc_expected = UserDescriptor.new("oblivious", 0, "0000", "0000");
+            udesc_expected = UserDescriptor.new("oblivious", "0000", "0000");
             expect(users["users"]["oblivious"]).to eq(udesc_expected);
         end
 
@@ -47,8 +47,8 @@ describe UserSaver do
 
             users = YAML::load(File.read(DB_PATH));
 
-            alice = UserDescriptor.new("alice", 0, "0000", "0000");
-            bob = UserDescriptor.new("bob", 0, "0000", "0000");
+            alice = UserDescriptor.new("alice", "0000", "0000");
+            bob = UserDescriptor.new("bob", "0000", "0000");
             expect(users["users"]["bob"]).to eq(bob);
             expect(users["users"]["alice"]).to eq(alice);
         end
