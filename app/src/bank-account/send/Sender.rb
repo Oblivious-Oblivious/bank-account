@@ -20,7 +20,7 @@ class Sender < ISender
         elsif user_validation_fails(from_user, to_user)
             [:hash_id_error, "Send"];
         else
-            d = UserSaverGateway.new;
+            d = DatabaseGateway.new;
             d.add(to_user, amount_of);
             d.subtract(from_user, amount_of);
             [:ok, "Send"];

@@ -1,13 +1,11 @@
-require "./database/src/user_saver";
-
-describe UserSaverGateway do
+describe DatabaseGateway do
     before :each do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         d.reset_database;
     end
 
     it "registers a new user into the database" do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         oblivious = User.new("oblivious");
 
         d.store(oblivious, "1234", "pass123");
@@ -15,7 +13,7 @@ describe UserSaverGateway do
     end
 
     it "registers two extra users into the database" do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
 
         d.store(User.new("u1"), "0000", "0000");
         d.store(User.new("u2"), "0000", "0000");
@@ -24,7 +22,7 @@ describe UserSaverGateway do
     end
 
     it "adds to the balance of a user" do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         oblivious = User.new("oblivious");
 
         d.store(oblivious, "1234", "pass123");
@@ -34,7 +32,7 @@ describe UserSaverGateway do
     end
 
     it "subtracts from the balance of a user" do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         oblivious = User.new("oblivious");
 
         d.store(oblivious, "1234", "pass123");
@@ -45,7 +43,7 @@ describe UserSaverGateway do
     end
 
     it "updates the information of a user" do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         oblivious = User.new("oblivious");
 
         d.store(oblivious, "1234", "pass123");
@@ -60,7 +58,7 @@ describe UserSaverGateway do
     end
 
     it "loads the information of a specific user" do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         oblivious = User.new("oblivious");
 
         d.store(oblivious, "1234", "pass123");

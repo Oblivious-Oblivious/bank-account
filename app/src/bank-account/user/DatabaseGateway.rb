@@ -1,4 +1,5 @@
-class UserSaverGateway
+# TODO Try detatching, DB connects everything too much.
+class DatabaseGateway
     private attr_reader :db;
 
     def initialize(db = UserSaver.new)

@@ -1,6 +1,6 @@
 describe InformationViewer do
     before(:each) do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         d.reset_database;
         d.store(User.new("oblivious"), "1337", "l33tc0d3r");
         d.add(User.new("oblivious"), 42);

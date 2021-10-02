@@ -1,5 +1,5 @@
 class UserValidator
     def self.validate(user)
-        not UserSaverGateway.new.load(user).nil?;
+        not DatabaseGateway.new.load(user).nil?;
     end
 end

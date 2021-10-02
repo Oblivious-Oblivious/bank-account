@@ -1,6 +1,6 @@
 describe Sender do
     before(:each) do
-        db = UserSaverGateway.new;
+        db = DatabaseGateway.new;
         db.reset_database;
         db.store(User.new("Alice"), "1234", "pass123");
         db.store(User.new("Bob"), "9876", "leet987");
@@ -24,7 +24,7 @@ describe Sender do
         );
 
         expect(response).to eq [:hash_id_error, "Send"];
-        expect(UserSaverGateway.new.load(sender).balance).to eq 42;
+        expect(DatabaseGateway.new.load(sender).balance).to eq 42;
     end
 
     it "sends to a valid user" do
@@ -39,8 +39,8 @@ describe Sender do
         );
 
         expect(response).to eq [:ok, "Send"];
-        expect(UserSaverGateway.new.load(sender).balance).to eq 29;
-        expect(UserSaverGateway.new.load(receiver).balance).to eq 50;
+        expect(DatabaseGateway.new.load(sender).balance).to eq 29;
+        expect(DatabaseGateway.new.load(receiver).balance).to eq 50;
     end
 
     it "tries to send an invalid amount" do
@@ -55,8 +55,8 @@ describe Sender do
         );
 
         expect(response).to eq [:amount_error, "Send"];
-        expect(UserSaverGateway.new.load(sender).balance).to eq 42;
-        expect(UserSaverGateway.new.load(receiver).balance).to eq 37;
+        expect(DatabaseGateway.new.load(sender).balance).to eq 42;
+        expect(DatabaseGateway.new.load(receiver).balance).to eq 37;
     end
 
     it "tries to send a negative amount" do
@@ -71,7 +71,7 @@ describe Sender do
         );
 
         expect(response).to eq [:amount_error, "Send"];
-        expect(UserSaverGateway.new.load(sender).balance).to eq 42;
-        expect(UserSaverGateway.new.load(receiver).balance).to eq 37;
+        expect(DatabaseGateway.new.load(sender).balance).to eq 42;
+        expect(DatabaseGateway.new.load(receiver).balance).to eq 37;
     end
 end

@@ -1,6 +1,6 @@
 describe DuplicationValidator do
     before(:each) do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         d.reset_database;
     end
 

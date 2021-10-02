@@ -7,7 +7,7 @@ class Withdrawer < IWithdrawer
 
     def withdraw(amount_of:, from_user:)
         if validator.validate(amount_of, from_user)
-            d = UserSaverGateway.new;
+            d = DatabaseGateway.new;
             d.subtract(from_user, amount_of);
             [:ok, "Withdraw"];
         else

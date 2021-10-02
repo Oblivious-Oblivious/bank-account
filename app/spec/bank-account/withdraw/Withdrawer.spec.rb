@@ -1,13 +1,11 @@
 describe Withdrawer do
     before :each do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         d.reset_database;
         oblivious = User.new("oblivious");
 
         d.store(oblivious, "4242", "random42");
         d.add(oblivious, 13);
-
-        d;
     end
 
     it "responds to the :withdraw message" do
@@ -15,7 +13,7 @@ describe Withdrawer do
     end
 
     it "tries to deposit an invalid amount" do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         oblivious = User.new("oblivious");
 
         w = Withdrawer.new;
@@ -26,7 +24,7 @@ describe Withdrawer do
     end
 
     it "withdraws a valid amount" do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         oblivious = User.new("oblivious");
 
         w = Withdrawer.new;

@@ -1,6 +1,6 @@
 describe UserValidator do
     before(:each) do
-        d = UserSaverGateway.new;
+        d = DatabaseGateway.new;
         d.reset_database;
         d.store(User.new("oblivious"), "0000", "0000");
     end
