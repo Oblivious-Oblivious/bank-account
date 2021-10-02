@@ -1,5 +1,5 @@
 require "rspec/autorun";
-require_relative "../User.schema";
+require_relative "../src/UserDescriptor";
 
 describe UserDescriptor do
     it "creates a new UserDescriptor with a User named 'oblivious' and a balance of $42" do

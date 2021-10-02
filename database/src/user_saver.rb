@@ -1,3 +1,4 @@
+require_relative "UserDescriptor";
 require "yaml";
 
 class UserSaver

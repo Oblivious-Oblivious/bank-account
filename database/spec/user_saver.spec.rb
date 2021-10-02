@@ -1,7 +1,7 @@
 require "rspec/autorun";
 
 require "yaml";
-require_relative "../user_saver";
+require_relative "../src/user_saver";
 
 describe UserSaver do
     DB_PATH = "database/_users.db";
