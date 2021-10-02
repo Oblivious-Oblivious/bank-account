@@ -3,6 +3,7 @@ describe DatabaseGateway do
         d = DatabaseGateway.new;
         d.reset_database;
     end
+    after(:each) { DatabaseGateway.new.reset_database; };
 
     it "registers a new user into the database" do
         d = DatabaseGateway.new;

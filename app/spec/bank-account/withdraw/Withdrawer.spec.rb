@@ -7,6 +7,7 @@ describe Withdrawer do
         d.store(oblivious, "4242", "random42");
         d.add(oblivious, 13);
     end
+    after(:each) { DatabaseGateway.new.reset_database; };
 
     it "responds to the :withdraw message" do
         expect(Withdrawer.new).to respond_to(:withdraw);

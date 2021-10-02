@@ -7,6 +7,7 @@ describe Sender do
         db.add(User.new("Alice"), 42);
         db.add(User.new("Bob"), 37);
     end
+    after(:each) { DatabaseGateway.new.reset_database; };
 
     it "responds to the :send message" do
         expect(Sender.new).to respond_to(:send);

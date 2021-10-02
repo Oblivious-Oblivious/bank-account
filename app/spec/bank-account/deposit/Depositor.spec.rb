@@ -9,6 +9,7 @@ describe Depositor do
 
         d;
     end
+    after(:each) { DatabaseGateway.new.reset_database; };
 
     it "responds to the :deposit message" do
         expect(Depositor.new).to respond_to(:deposit);

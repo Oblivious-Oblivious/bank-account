@@ -3,6 +3,7 @@ describe AmountValidator do
         d = DatabaseGateway.new;
         d.reset_database;
     end
+    after(:each) { DatabaseGateway.new.reset_database; };
 
     it "returns true on amount = 42, when balance = 42" do
         d = DatabaseGateway.new;

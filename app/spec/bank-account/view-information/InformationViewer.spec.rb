@@ -5,6 +5,7 @@ describe InformationViewer do
         d.store(User.new("oblivious"), "1337", "l33tc0d3r");
         d.add(User.new("oblivious"), 42);
     end
+    after(:each) { DatabaseGateway.new.reset_database; };
 
     it "responds to :view_account_data" do
         expect(InformationViewer.new).to respond_to(:view_account_data);
