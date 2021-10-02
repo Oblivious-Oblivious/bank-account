@@ -1,4 +1,4 @@
-require "./src/bank-account/database/user_saver";
+require "./database/src/user_saver";
 
 describe UserSaverGateway do
     before :each do
@@ -53,7 +53,7 @@ describe UserSaverGateway do
         d.update(oblivious, "oblivious", "4242", "random42");
 
         updated_user = d.load_all_users["users"]["oblivious"];
-        expect(updated_user.user).to eq User.new("oblivious");
+        expect(updated_user.user).to eq "oblivious";
         expect(updated_user.balance).to eq 42;
         expect(updated_user.pin).to eq "4242";
         expect(updated_user.password).to eq "random42";
@@ -66,7 +66,7 @@ describe UserSaverGateway do
         d.store(oblivious, "1234", "pass123");
         d.store(User.new("another"), "0000", "0000");
 
-        expect(d.load(oblivious).user).to eq User.new("oblivious");
+        expect(d.load(oblivious).user).to eq "oblivious";
         expect(d.load(oblivious).balance).to eq 0;
         expect(d.load(oblivious).pin).to eq "1234";
         expect(d.load(oblivious).password).to eq "pass123";

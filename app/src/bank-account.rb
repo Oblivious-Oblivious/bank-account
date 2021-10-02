@@ -1,4 +1,4 @@
-Dir[Dir.pwd + "/src/bank-account/**/*.rb"].each { |f| require f };
+Dir[Dir.pwd + "/app/src/bank-account/**/*.rb"].each { |f| require f };
 
 # Defines the main functionality when running the system
 module BankAccount::Main

@@ -6,7 +6,7 @@ class UserSaverGateway
     end
 
     def store(user, pin, password)
-        db.new_user(user, pin, password);
+        db.new_user(user.username, pin, password);
     end
 
     def load_all_users
@@ -14,15 +14,15 @@ class UserSaverGateway
     end
 
     def add(user, amount)
-        db.add_user_balance(user, amount);
+        db.add_user_balance(user.username, amount);
     end
 
     def subtract(user, amount)
-        db.subtract_user_balance(user, amount);
+        db.subtract_user_balance(user.username, amount);
     end
 
     def update(user, username, pin, password)
-        db.update_user_information(user, {
+        db.update_user_information(user.username, {
             "username" => username,
             "pin" => pin,
             "password" => password
@@ -34,8 +34,8 @@ class UserSaverGateway
     end
 
     def reset_database
-        load_all_users["users"].each do |user_object|
-            db.delete_user(user_object[1].user);
+        load_all_users["users"].each do |user|
+            db.delete_user(user[0]);
         end
     end
 end
