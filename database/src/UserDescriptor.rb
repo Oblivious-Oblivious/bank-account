@@ -1,14 +1,14 @@
 class UserDescriptor
-    attr_accessor :user, :balance, :pin, :password;
+    attr_accessor :username, :balance, :pin, :password;
 
-    def initialize(user, balance, pin, password)
-        @user = user;
+    def initialize(username, balance, pin, password)
+        @username = username;
         @balance = balance;
         @pin = pin;
         @password = password;
     end
 
     def ==(other)
-        user == other.user && balance == other.balance && pin == other.pin && password == other.password;
+        username == other.username && balance == other.balance && pin == other.pin && password == other.password;
     end
 end
