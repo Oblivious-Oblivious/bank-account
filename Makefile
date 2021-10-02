@@ -2,10 +2,16 @@ NAME = bank-account
 INPUT = $(NAME).rb
 
 run:
-	ruby src/$(INPUT)
+	ruby app/src/$(INPUT)
 
 test:
-	ruby spec/$(NAME).spec.rb
+	ruby app/spec/$(NAME).spec.rb
+
+test_db:
+	ruby database/spec/user_saver.spec.rb \
+		 database/spec/UserDescriptor.spec.rb
 
 clean:
 	@echo
+
+# TODO Create a Register use case and friends
