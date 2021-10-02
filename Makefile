@@ -21,5 +21,3 @@ test_db:
 
 clean:
 	@echo
-
-# TODO Create a Register use case and friends
