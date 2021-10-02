@@ -1,8 +1,8 @@
 class UserSaverGateway
     private attr_reader :db;
 
-    def initialize
-        @db = UserSaver.new;
+    def initialize(db = UserSaver.new)
+        @db = db;
     end
 
     def store(user, pin, password)
