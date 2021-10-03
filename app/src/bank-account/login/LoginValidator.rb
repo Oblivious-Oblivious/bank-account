@@ -2,6 +2,6 @@ class LoginValidator
     def self.validate(username, pin, password)
         d = DatabaseGateway.new;
         user = d.load(User.new(username));
-        !user.nil? && user.pin == pin && user.password == password;
+        not user.nil? and user.pin == pin and user.password == password;
     end
 end

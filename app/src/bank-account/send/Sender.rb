@@ -2,7 +2,7 @@ class Sender < ISender
     private attr_reader :amount_validator, :user_validator;
 
     private def user_validation_fails(sender, receiver)
-        not (user_validator.validate(receiver) && user_validator.validate(sender));
+        not (user_validator.validate(receiver) and user_validator.validate(sender));
     end
 
     private def amount_validation_fails(amount, sender)
