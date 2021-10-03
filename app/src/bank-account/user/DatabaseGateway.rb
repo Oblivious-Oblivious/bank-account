@@ -1,7 +1,7 @@
-require "./database/src/user_saver";
+require_relative "./IDatabaseGateway";
 
 # TODO Try detatching, DB connects everything too much.
-class DatabaseGateway
+class DatabaseGateway < IDatabaseGateway
     private attr_reader :db;
 
     def initialize(db = UserSaver.new)
