@@ -3,11 +3,9 @@ class InformationViewer < IInformationViewer
         d = DatabaseGateway.new;
 
         # TODO Fix use of data here
-        hash_id = User.new(d.load(of_user).username).hash_id;
-        balance = d.load(of_user).balance;
-        # TODO Transactions
-        transaction_info = [];
+        user = d.load(of_user);
+        user_obj = User.new(d.load(of_user).username);
 
-        [hash_id, balance, transaction_info];
+        [user_obj.hash_id, user.balance, user.transactions];
     end
 end
