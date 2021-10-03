@@ -23,6 +23,15 @@ class Sender < ISender
             d = DatabaseGateway.new;
             d.add(to_user, amount_of);
             d.subtract(from_user, amount_of);
+
+            tr = Transaction.new(
+                sender: from_user,
+                receiver: to_user,
+                amount: amount_of
+            );
+            d.log_transaction(from_user, tr);
+            d.log_transaction(to_user, tr);
+
             [:ok, "Send"];
         end
     end

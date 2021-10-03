@@ -9,6 +9,11 @@ class Withdrawer < IWithdrawer
         if validator.validate(amount_of, from_user)
             d = DatabaseGateway.new;
             d.subtract(from_user, amount_of);
+            d.log_transaction(from_user, Transaction.new(
+                sender: User.new("Bank Account"),
+                receiver: from_user,
+                amount: amount_of
+            ));
             [:ok, "Withdraw"];
         else
             [:validation_error, "Withdraw"];

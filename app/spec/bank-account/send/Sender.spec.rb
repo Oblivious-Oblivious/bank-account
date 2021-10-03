@@ -75,4 +75,40 @@ describe Sender do
         expect(DatabaseGateway.new.load(sender).balance).to eq 42;
         expect(DatabaseGateway.new.load(receiver).balance).to eq 37;
     end
+
+    it "saves a transaction object for each user after each send" do
+        d = DatabaseGateway.new;
+        s = Sender.new;
+        sender = User.new("Alice");
+        receiver = User.new("Bob");
+
+        response = s.send(
+            amount_of: 13,
+            from_user: sender,
+            to_user: receiver
+        );
+
+        expect(d.load(sender).transactions.size).to eq 1;
+        expect(d.load(receiver).transactions.size).to eq 1;
+    end
+
+    it "saves transaction objects with correct data" do
+        d = DatabaseGateway.new;
+        s = Sender.new;
+        sender = User.new("Alice");
+        receiver = User.new("Bob");
+
+        response = s.send(
+            amount_of: 13,
+            from_user: sender,
+            to_user: receiver
+        );
+
+        expect(d.load(sender).transactions[0]["sender"]).to eq sender.username;
+        expect(d.load(sender).transactions[0]["receiver"]).to eq receiver.username;
+        expect(d.load(sender).transactions[0]["amount"]).to eq 13;
+        expect(d.load(receiver).transactions[0]["sender"]).to eq sender.username;
+        expect(d.load(receiver).transactions[0]["receiver"]).to eq receiver.username;
+        expect(d.load(receiver).transactions[0]["amount"]).to eq 13;
+    end
 end
