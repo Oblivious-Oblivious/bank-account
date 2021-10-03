@@ -32,6 +32,15 @@ class DatabaseGateway
         });
     end
 
+    def log_transaction(user, transaction)
+        db.log_transaction(user.username, {
+            "sender" => transaction.sender,
+            "receiver" => transaction.receiver,
+            "amount" => transaction.amount,
+            "date" => transaction.date
+        });
+    end
+
     def load(user)
         load_all_users["users"][user.username];
     end

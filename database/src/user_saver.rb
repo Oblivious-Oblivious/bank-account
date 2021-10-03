@@ -83,6 +83,15 @@ class UserSaver
         write_to_db(users.to_yaml);
     end
 
+    def log_transaction(user, transaction_information)
+        users = load_stored_users();
+        return if user_does_not_exist_in_db(users, user);
+
+        users["users"][user].transactions << transaction_information;
+
+        write_to_db(users.to_yaml);
+    end
+
     def delete_user(user)
         users = load_stored_users();
         return if user_does_not_exist_in_db(users, user);

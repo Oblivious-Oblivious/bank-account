@@ -70,4 +70,38 @@ describe DatabaseGateway do
         expect(d.load(oblivious).pin).to eq "1234";
         expect(d.load(oblivious).password).to eq "pass123";
     end
+
+    it "logs a transaction of a user" do
+        d = DatabaseGateway.new;
+        alice = User.new("alice");
+        bob = User.new("bob");
+
+        t = Transaction.new(
+            sender: User.new("alice"),
+            receiver: User.new("bob"),
+            amount: 42
+        );
+
+        d.store(alice, "4242", "random42");
+        d.store(bob, "0000", "random42");
+        d.log_transaction(alice, t);
+
+        expect(d.load(alice).transactions.size).to eq 1;
+    end
+
+    it "tries to log to a non existent user" do
+        d = DatabaseGateway.new;
+        alice = User.new("alice");
+
+        t = Transaction.new(
+            sender: User.new("oblivious"),
+            receiver: User.new("alice"),
+            amount: 42
+        );
+
+        d.store(alice, "4242", "random42");
+        d.log_transaction(User.new("oblivious"), t);
+
+        expect(d.load(alice).transactions.size).to eq 0;
+    end
 end

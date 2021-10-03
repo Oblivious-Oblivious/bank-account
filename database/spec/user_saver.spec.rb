@@ -158,6 +158,27 @@ describe UserSaver do
         end
     end
 
+    context "#log_transaction" do
+        it "logs the transaction information in the UserDescriptor's field" do
+            saver = UserSaver.new;
+            user = "alice";
+
+            saver.new_user(user, "4242", "random42");
+            saver.log_transaction(user, {
+                "sender" => "alice",
+                "receiver" => "bob",
+                "amount" => 42,
+                "date" => Time.now
+            });
+
+            users = YAML::load(File.read(DB_PATH));
+            expect(users["users"]["alice"].transactions.size).to eq 1;
+            expect(users["users"]["alice"].transactions[0]["sender"]).to eq("alice");
+            expect(users["users"]["alice"].transactions[0]["receiver"]).to eq("bob");
+            expect(users["users"]["alice"].transactions[0]["amount"]).to eq(42);
+        end
+    end
+
     context "#delete_user" do
         it "does nothing if asked to delete an non existent user" do
             saver = UserSaver.new;
