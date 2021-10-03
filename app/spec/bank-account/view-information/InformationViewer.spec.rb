@@ -22,4 +22,6 @@ describe InformationViewer do
         iv = InformationViewer.new;
         expect(iv.view_account_data(of_user: oblivious)[2]).to eq [];
     end
+
+    # TODO Test for valid transaction array
 end
