@@ -18,10 +18,18 @@ describe Depositor do
         oblivious = User.new("oblivious");
         
         dep = Depositor.new;
-        response = dep.deposit(amount_of: 42, to_user: oblivious);
+        model = RequestModel.new(vals: [
+            LargeAmountValidator.new,
+            NullLargeAmountValidator.new
+        ], data: {
+            :amount_of => 42,
+            :to_user => oblivious
+        });
+        response = dep.deposit(request_model: model);
 
         expect(d.load_all_users["users"]["oblivious"].balance).to eq(54);
-        expect(response).to eq [:ok, "Deposit"];
+        expect(response.res).to eq :ok;
+        expect(response.use_case).to eq "Deposit";
     end
 
     it "deposits an invalid amount of $10000 to a new user" do
@@ -29,10 +37,18 @@ describe Depositor do
         oblivious = User.new("oblivious");
         
         dep = Depositor.new;
-        response = dep.deposit(amount_of: 10_000, to_user: oblivious);
+        model = RequestModel.new(vals: [
+            LargeAmountValidator.new,
+            NullLargeAmountValidator.new
+        ], data: {
+            :amount_of => 10_000,
+            :to_user => oblivious
+        });
+        response = dep.deposit(request_model: model);
 
         expect(d.load_all_users["users"]["oblivious"].balance).to eq(12);
-        expect(response).to eq [:large_amount_error, "Deposit"];
+        expect(response.res).to eq :large_amount_error;
+        expect(response.use_case).to eq "Deposit";
     end
 
     it "saves a transaction object after each deposit" do
@@ -40,7 +56,14 @@ describe Depositor do
         oblivious = User.new("oblivious");
 
         dep = Depositor.new;
-        response = dep.deposit(amount_of: 42, to_user: oblivious);
+        model = RequestModel.new(vals: [
+            LargeAmountValidator.new,
+            NullLargeAmountValidator.new
+        ], data: {
+            :amount_of => 42,
+            :to_user => oblivious
+        });
+        response = dep.deposit(request_model: model);
 
         expect(d.load(oblivious).transactions.size).to eq 1;
     end
@@ -50,7 +73,14 @@ describe Depositor do
         oblivious = User.new("oblivious");
 
         dep = Depositor.new;
-        response = dep.deposit(amount_of: 42, to_user: oblivious);
+        model = RequestModel.new(vals: [
+            LargeAmountValidator.new,
+            NullLargeAmountValidator.new
+        ], data: {
+            :amount_of => 42,
+            :to_user => oblivious
+        });
+        response = dep.deposit(request_model: model);
 
         expect(d.load(oblivious).transactions[0]["sender"]).to eq oblivious.username;
         expect(d.load(oblivious).transactions[0]["receiver"]).to eq "Bank Account";
