@@ -1,13 +1,11 @@
 describe Depositor do
-    before :each do
+    before(:each) do
         d = DatabaseGateway.new;
         d.reset_database;
         oblivious = User.new("oblivious");
 
         d.store(oblivious, "4242", "random42");
         d.add(oblivious, 12);
-
-        d;
     end
     after(:each) { DatabaseGateway.new.reset_database; };
 
