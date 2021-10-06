@@ -1,15 +1,10 @@
 class Login < ILogin
-    private attr_reader :validator;
-
-    def initialize(validator = LoginValidator)
-        @validator = validator;
-    end
-
-    def login(username:, pin:, password:)
-        if validator.validate(username, pin, password)
-            [:ok, "Log In"];
-        else
-            [:validation_error, "Log In"];
+    def login(request_model:)
+        request_model.vals.each do |v|
+            if v.fails?(request_model.data)
+                v.modify_db_state(request_model.data);
+                return v.response_model;
+            end
         end
     end
 end

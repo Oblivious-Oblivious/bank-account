@@ -1,5 +1,5 @@
 describe Withdrawer do
-    before :each do
+    before(:each)do
         d = DatabaseGateway.new;
         d.reset_database;
         oblivious = User.new("oblivious");
@@ -18,9 +18,17 @@ describe Withdrawer do
         oblivious = User.new("oblivious");
 
         w = Withdrawer.new;
-        response = w.withdraw(amount_of: 42, from_user: oblivious);
+        model = RequestModel.new(vals: [
+            WithdrawValidator.new,
+            NullWithdrawValidator.new
+        ], data: {
+            :amount_of => 42,
+            :from_user => oblivious
+        });
+        response = w.withdraw(request_model: model);
 
-        expect(response).to eq [:validation_error, "Withdraw"];
+        expect(response.res).to eq :amount_error;
+        expect(response.use_case).to eq "Withdraw";
         expect(d.load(oblivious).balance).to eq 13;
     end
 
@@ -29,9 +37,17 @@ describe Withdrawer do
         oblivious = User.new("oblivious");
 
         w = Withdrawer.new;
-        response = w.withdraw(amount_of: 8, from_user: oblivious);
+        model = RequestModel.new(vals: [
+            WithdrawValidator.new,
+            NullWithdrawValidator.new
+        ], data: {
+            :amount_of => 8,
+            :from_user => oblivious
+        });
+        response = w.withdraw(request_model: model);
 
-        expect(response).to eq [:ok, "Withdraw"];
+        expect(response.res).to eq :ok;
+        expect(response.use_case).to eq "Withdraw";
         expect(d.load(oblivious).balance).to eq 5;
     end
 
@@ -40,7 +56,14 @@ describe Withdrawer do
         oblivious = User.new("oblivious");
 
         w = Withdrawer.new;
-        response = w.withdraw(amount_of: 8, from_user: oblivious);
+        model = RequestModel.new(vals: [
+            WithdrawValidator.new,
+            NullWithdrawValidator.new
+        ], data: {
+            :amount_of => 8,
+            :from_user => oblivious
+        });
+        response = w.withdraw(request_model: model);
 
         expect(d.load(oblivious).transactions.size).to eq 1;
     end
@@ -50,7 +73,14 @@ describe Withdrawer do
         oblivious = User.new("oblivious");
 
         w = Withdrawer.new;
-        response = w.withdraw(amount_of: 8, from_user: oblivious);
+        model = RequestModel.new(vals: [
+            WithdrawValidator.new,
+            NullWithdrawValidator.new
+        ], data: {
+            :amount_of => 8,
+            :from_user => oblivious
+        });
+        response = w.withdraw(request_model: model);
 
         expect(d.load(oblivious).transactions[0]["sender"]).to eq "Bank Account";
         expect(d.load(oblivious).transactions[0]["receiver"]).to eq oblivious.username;

@@ -1,6 +1,13 @@
 class DuplicationValidator
-    def self.validate(username)
+    def modify_db_state(_)
+    end
+
+    def fails?(data)
         d = DatabaseGateway.new;
-        d.load(User.new(username)).nil?;
+        not d.load(User.new(data[:username])).nil?;
+    end
+
+    def response_model
+        ResponseModel.new(res: :duplication_error, use_case: "Register", data: {});
     end
 end

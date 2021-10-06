@@ -8,27 +8,37 @@ describe Register do
 
     it "returns an [:ok, \"Register\"] array when successfully registered" do
         r = Register.new;
-        response = r.register(
-            username: "oblivious",
-            pin: "1234",
-            password: "pass123"
-        );
+        model = RequestModel.new(vals: [
+            DuplicationValidator.new,
+            NullDuplicationValidator.new
+        ], data: {
+            :username => "oblivious",
+            :pin => "1234",
+            :password => "pass123"
+        });
+        response = r.register(request_model: model);
 
-        expect(response).to eq [:ok, "Register"];
+        expect(response.res).to eq :ok;
+        expect(response.use_case).to eq "Register";
     end
 
     it "makes sure the user is saved on successfull register" do
         r = Register.new;
-        response = r.register(
-            username: "alice",
-            pin: "0000",
-            password: "4l1c3 l3373r"
-        );
+        model = RequestModel.new(vals: [
+            DuplicationValidator.new,
+            NullDuplicationValidator.new
+        ], data: {
+            :username => "alice",
+            :pin => "0000",
+            :password => "4l1c3 l3373r"
+        });
+        response = r.register(request_model: model);
 
         d = DatabaseGateway.new;
         alice = d.load(User.new("alice"));
 
-        expect(response).to eq [:ok, "Register"];
+        expect(response.res).to eq :ok;
+        expect(response.use_case).to eq "Register";
         expect(d.load_all_users["users"].size).to eq 1;
         expect(alice.username).to eq "alice";
         expect(alice.balance).to eq 0;
@@ -41,15 +51,19 @@ describe Register do
         d.store(User.new("oblivious"), "0000", "0000");
 
         r = Register.new;
-        response = r.register(
-            username: "oblivious",
-            pin: "1234",
-            password: "pass123"
-        );
+        model = RequestModel.new(vals: [
+            DuplicationValidator.new,
+            NullDuplicationValidator.new
+        ], data: {
+            :username => "oblivious",
+            :pin => "1234",
+            :password => "pass123"
+        });
+        response = r.register(request_model: model);
 
         oblivious = d.load(User.new("oblivious"));
-
-        expect(response).to eq [:duplication_error, "Register"];
+        expect(response.res).to eq :duplication_error;
+        expect(response.use_case).to eq "Register";
         expect(d.load_all_users["users"].size).to eq 1;
         expect(oblivious.username).to eq "oblivious";
         expect(oblivious.balance).to eq 0;
@@ -60,22 +74,25 @@ describe Register do
     it "tries to register a user twice but only does so once" do
         r = Register.new;
 
-        response1 = r.register(
-            username: "oblivious",
-            pin: "1234",
-            password: "pass123"
-        );
-        response2 = r.register(
-            username: "oblivious",
-            pin: "1234",
-            password: "pass123"
-        );
+        r = Register.new;
+        model = RequestModel.new(vals: [
+            DuplicationValidator.new,
+            NullDuplicationValidator.new
+        ], data: {
+            :username => "oblivious",
+            :pin => "1234",
+            :password => "pass123"
+        });
+        response1 = r.register(request_model: model);
+        response2 = r.register(request_model: model);
 
         d = DatabaseGateway.new;
         oblivious = d.load(User.new("oblivious"));
 
-        expect(response1).to eq [:ok, "Register"];
-        expect(response2).to eq [:duplication_error, "Register"];
+        expect(response1.res).to eq :ok;
+        expect(response1.use_case).to eq "Register";
+        expect(response2.res).to eq :duplication_error;
+        expect(response2.use_case).to eq "Register";
         expect(d.load_all_users["users"].size).to eq 1;
         expect(oblivious.username).to eq "oblivious";
         expect(oblivious.balance).to eq 0;

@@ -1,4 +1,4 @@
-class AmountValidator
+class WithdrawValidator
     def modify_db_state(_)
     end
 
@@ -8,6 +8,6 @@ class AmountValidator
     end
 
     def response_model
-        ResponseModel.new(res: :amount_error, use_case: "Send", data: {});
+        ResponseModel.new(res: :amount_error, use_case: "Withdraw", data: {});
     end
 end

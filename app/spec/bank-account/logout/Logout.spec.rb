@@ -4,7 +4,14 @@ describe Logout do
     end
 
     it "returns [:ok, \"Log Out\"] when :logout is called" do
-        obj = Logout.new.logout(user: User.new("oblivious"));
-        expect(obj).to eq [:ok, "Log Out"];
+        model = RequestModel.new(vals: [
+            NullLogoutValidator.new
+        ], data: {
+            user: User.new("oblivious")
+        });
+
+        response = Logout.new.logout(request_model: model);
+        expect(response.res).to eq :ok;
+        expect(response.use_case).to eq "Log Out";
     end
 end

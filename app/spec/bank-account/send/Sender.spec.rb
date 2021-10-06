@@ -14,79 +14,112 @@ describe Sender do
     end
 
     it "tries to send to an invalid user" do
-        s = Sender.new;
+        d = DatabaseGateway.new;
         sender = User.new("Alice");
         receiver = User.new("Non existent");
 
-        response = s.send(
-            amount_of: 13,
-            from_user: sender,
-            to_user: receiver
-        );
+        s = Sender.new;
+        model = RequestModel.new(vals: [
+            AmountValidator.new,
+            UserValidator.new,
+            NullSendValidator.new
+        ], data: {
+            :amount_of => 13,
+            :from_user => sender,
+            :to_user => receiver
+        });
+        response = s.send(request_model: model);
 
-        expect(response).to eq [:hash_id_error, "Send"];
-        expect(DatabaseGateway.new.load(sender).balance).to eq 42;
+        expect(response.res).to eq :hash_id_error;
+        expect(response.use_case).to eq "Send";
+        expect(d.load(sender).balance).to eq 42;
     end
 
     it "sends to a valid user" do
-        s = Sender.new;
+        d = DatabaseGateway.new;
         sender = User.new("Alice");
         receiver = User.new("Bob");
+        
+        s = Sender.new;
+        model = RequestModel.new(vals: [
+            AmountValidator.new,
+            UserValidator.new,
+            NullSendValidator.new
+        ], data: {
+            :amount_of => 13,
+            :from_user => sender,
+            :to_user => receiver
+        });
+        response = s.send(request_model: model);
 
-        response = s.send(
-            amount_of: 13,
-            from_user: sender,
-            to_user: receiver
-        );
-
-        expect(response).to eq [:ok, "Send"];
-        expect(DatabaseGateway.new.load(sender).balance).to eq 29;
-        expect(DatabaseGateway.new.load(receiver).balance).to eq 50;
+        expect(response.res).to eq :ok;
+        expect(response.use_case).to eq "Send";
+        expect(d.load(sender).balance).to eq 29;
+        expect(d.load(receiver).balance).to eq 50;
     end
 
     it "tries to send an invalid amount" do
-        s = Sender.new;
+        d = DatabaseGateway.new;
         sender = User.new("Alice");
         receiver = User.new("Bob");
+        
+        s = Sender.new;
+        model = RequestModel.new(vals: [
+            AmountValidator.new,
+            UserValidator.new,
+            NullSendValidator.new
+        ], data: {
+            :amount_of => 113,
+            :from_user => sender,
+            :to_user => receiver
+        });
+        response = s.send(request_model: model);
 
-        response = s.send(
-            amount_of: 113,
-            from_user: sender,
-            to_user: receiver
-        );
-
-        expect(response).to eq [:amount_error, "Send"];
+        expect(response.res).to eq :amount_error;
+        expect(response.use_case).to eq "Send";
         expect(DatabaseGateway.new.load(sender).balance).to eq 42;
         expect(DatabaseGateway.new.load(receiver).balance).to eq 37;
     end
 
     it "tries to send a negative amount" do
-        s = Sender.new;
+        d = DatabaseGateway.new;
         sender = User.new("Alice");
         receiver = User.new("Bob");
+        
+        s = Sender.new;
+        model = RequestModel.new(vals: [
+            AmountValidator.new,
+            UserValidator.new,
+            NullSendValidator.new
+        ], data: {
+            :amount_of => -113,
+            :from_user => sender,
+            :to_user => receiver
+        });
+        response = s.send(request_model: model);
 
-        response = s.send(
-            amount_of: -113,
-            from_user: sender,
-            to_user: receiver
-        );
-
-        expect(response).to eq [:amount_error, "Send"];
+        expect(response.res).to eq :amount_error;
+        expect(response.use_case).to eq "Send";
         expect(DatabaseGateway.new.load(sender).balance).to eq 42;
         expect(DatabaseGateway.new.load(receiver).balance).to eq 37;
     end
 
     it "saves a transaction object for each user after each send" do
         d = DatabaseGateway.new;
-        s = Sender.new;
         sender = User.new("Alice");
         receiver = User.new("Bob");
-
-        response = s.send(
-            amount_of: 13,
-            from_user: sender,
-            to_user: receiver
-        );
+        
+        s = Sender.new;
+        model = RequestModel.new(vals: [
+            AmountValidator.new,
+            UserValidator.new,
+            NullSendValidator.new
+        ], data: {
+            :amount_of => 13,
+            :from_user => sender,
+            :to_user => receiver
+        });
+        response = s.send(request_model: model);
 
         expect(d.load(sender).transactions.size).to eq 1;
         expect(d.load(receiver).transactions.size).to eq 1;
@@ -94,15 +127,20 @@ describe Sender do
 
     it "saves transaction objects with correct data" do
         d = DatabaseGateway.new;
-        s = Sender.new;
         sender = User.new("Alice");
         receiver = User.new("Bob");
-
-        response = s.send(
-            amount_of: 13,
-            from_user: sender,
-            to_user: receiver
-        );
+        
+        s = Sender.new;
+        model = RequestModel.new(vals: [
+            AmountValidator.new,
+            UserValidator.new,
+            NullSendValidator.new
+        ], data: {
+            :amount_of => 13,
+            :from_user => sender,
+            :to_user => receiver
+        });
+        response = s.send(request_model: model);
 
         expect(d.load(sender).transactions[0]["sender"]).to eq sender.username;
         expect(d.load(sender).transactions[0]["receiver"]).to eq receiver.username;

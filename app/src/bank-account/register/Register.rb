@@ -1,17 +1,10 @@
 class Register < IRegister
-    private attr_reader :validator;
-
-    def initialize(validator = DuplicationValidator)
-        @validator = validator;
-    end
-
-    def register(username:, pin:, password:)
-        if validator.validate(username)
-            d = DatabaseGateway.new;
-            d.store(User.new(username), pin, password);
-            [:ok, "Register"];
-        else
-            [:duplication_error, "Register"];
+    def register(request_model:)
+        request_model.vals.each do |v|
+            if v.fails?(request_model.data)
+                v.modify_db_state(request_model.data);
+                return v.response_model;
+            end
         end
     end
 end
