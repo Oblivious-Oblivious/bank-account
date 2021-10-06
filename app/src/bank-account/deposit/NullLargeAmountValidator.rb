@@ -9,7 +9,7 @@ class NullLargeAmountValidator
         ));
     end
 
-    def fails?(data)
+    def fails?(_)
         true;
     end
 
