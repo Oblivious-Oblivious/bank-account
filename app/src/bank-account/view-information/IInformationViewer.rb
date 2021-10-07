@@ -1,3 +1,3 @@
 class IInformationViewer
-    def view_account_data(of_user:) = raise(self);
+    def view_account_data(request_model:) = raise(self);
 end

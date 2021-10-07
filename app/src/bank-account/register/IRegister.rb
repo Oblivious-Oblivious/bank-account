@@ -1,3 +1,3 @@
 class IRegister
-    def register(username:, pin:, password:) = raise(self);
+    def register(request_model:) = raise(self);
 end

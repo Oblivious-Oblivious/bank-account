@@ -1,3 +1,3 @@
 class ILogin
-    def login(username:, pin:, password:) = raise(self);
+    def login(request_model:) = raise(self);
 end
