@@ -1,6 +1,6 @@
 # bank-account
 
-Mock app for showcasing the Boundary-Interactor-Entiry-Viewmodel architecture.
+Mock app for showcasing the Boundary-Controller-Entiry-Viewmodel architecture.
 
 TODO Complete documentation
 
