@@ -1,6 +1,9 @@
 run:
 	ruby app/src/bank-account.rb
 
+run_cli:
+	ruby client/cli/View.rb
+
 test:
 	ruby database/spec/user_saver.spec.rb \
 		 database/spec/UserDescriptor.spec.rb \
