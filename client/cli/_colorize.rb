@@ -24,4 +24,7 @@ class String
         colorize(35);
     end
     
+    def light_blue
+        colorize(36);
+    end
 end
